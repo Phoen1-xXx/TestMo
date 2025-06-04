@@ -1,0 +1,91 @@
+{
+	"info": {
+		"_postman_id": "7bfe1066-f13c-4b07-95f5-428aca5121e8",
+		"name": "1----Testmo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27729240"
+	},
+	"item": [
+		{
+			"name": "LegalEntityForeign Hardcode",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"function generateNumericTimestamp() {\r",
+							"\r",
+							"    var currentTime = new Date().toISOString()\r",
+							"        .replace(/[-:TZ.]/g, '') \r",
+							"        .slice(5, );\r",
+							"\r",
+							"\r",
+							"    if (/^\\d+$/.test(currentTime) && currentTime.length >= 10) {\r",
+							"        return currentTime;\r",
+							"    } else {\r",
+							"        throw new Error(\"Generated timestamp is invalid.\");\r",
+							"    }\r",
+							"}\r",
+							"\r",
+							"try {\r",
+							"    var numericName = generateNumericTimestamp();\r",
+							"    pm.environment.set(\"customerIdentifier\", numericName);\r",
+							"} catch (error) {\r",
+							"    console.log(error.message);\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"CustomerID\", pm.response.json().id)\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test('[C2] Status code is 200', function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"customerType\": \"LEGAL_ENTITY\",\r\n  \"customerIdentifier\": {{customerIdentifier}},\r\n  \"foreign\": true,\r\n  \"marketingConsent\": false,\r\n  \"preferCommunicationInEnglish\": false,\r\n  \"oldCustomerNumber\": null,\r\n  \"vatNumber\": null,\r\n  \"customerDetailStatus\": \"POTENTIAL\",\r\n  \"businessCustomerDetails\": {\r\n    \"procurementLaw\": false,\r\n    \"name\": \"KKK-AUTOMATION\",\r\n    \"nameTranslated\": \"KKK-AUTOMATION\",\r\n    \"legalFormId\": 1000,\r\n    \"legalFormTransId\": 1000\r\n  },\r\n  \"ownershipFormId\": 1006,\r\n  \"economicBranchId\": null,\r\n  \"economicBranchNCEAId\": null,\r\n  \"mainSubjectOfActivity\": null,\r\n  \"segmentIds\": [\r\n    1013\r\n  ],\r\n  \"address\": {\r\n    \"foreign\": false,\r\n    \"localAddressData\": {\r\n      \"countryId\": null,\r\n      \"regionId\": null,\r\n      \"municipalityId\": null,\r\n      \"populatedPlaceId\": null,\r\n      \"zipCodeId\": null,\r\n      \"districtId\": null,\r\n      \"residentialAreaId\": null,\r\n      \"residentialAreaType\": null,\r\n      \"streetId\": null,\r\n      \"streetType\": null\r\n    },\r\n    \"number\": null,\r\n    \"additionalInformation\": null,\r\n    \"block\": null,\r\n    \"entrance\": null,\r\n    \"floor\": null,\r\n    \"apartment\": null,\r\n    \"mailbox\": null\r\n  },\r\n  \"bankingDetails\": {\r\n    \"directDebit\": false,\r\n    \"bankId\": null,\r\n    \"bic\": null,\r\n    \"iban\": null,\r\n    \"declaredConsumption\": null,\r\n    \"preferenceIds\": [],\r\n    \"creditRatingId\": null\r\n  },\r\n  \"managers\": null,\r\n  \"relatedCustomers\": null,\r\n  \"owner\": null,\r\n  \"communicationData\": null,\r\n  \"accountManagers\": null,\r\n  \"customerAdditionalInformation\": null,\r\n  \"customerEditContractRequests\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}customer",
+					"host": [
+						"{{url}}customer"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
