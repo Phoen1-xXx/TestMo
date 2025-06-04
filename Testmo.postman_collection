@@ -79,9 +79,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}customer",
+					"raw": "http://10.236.20.11:8091/customer",
 					"host": [
-						"{{url}}customer"
+						"http://10.236.20.11:8091/customer"
 					]
 				}
 			},
