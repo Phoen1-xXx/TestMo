@@ -1,0 +1,74 @@
+{
+	"info": {
+		"_postman_id": "e407d048-d303-4c82-b8e8-b03b28f4394a",
+		"name": "GetToken Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27729240"
+	},
+	"item": [
+		{
+			"name": "GetTokenTestmo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// var token = pm.response.json().jwt;\r",
+							"\r",
+							"// pm.environment.set(\"Token\", token);\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\": \"A36466\",\r\n    \"password\": \"Parolebi123\",\r\n    \"language\": \"bg_BG\",\r\n    \"applicationId\": \"16672bd0-c3dd-49da-a6e9-3cebbe60f129\",\r\n    \"redirectTo\": \"/\",\r\n    \"userValidationOnly\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://devapps.energo-pro.bg/backend/portal/rest/v2/login",
+					"protocol": "https",
+					"host": [
+						"devapps",
+						"energo-pro",
+						"bg"
+					],
+					"path": [
+						"backend",
+						"portal",
+						"rest",
+						"v2",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
